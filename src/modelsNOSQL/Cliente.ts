@@ -1,17 +1,21 @@
-import { modelOptions,prop,getModelForClass } from "@typegoose/typegoose";
+import { modelOptions, prop, getModelForClass } from "@typegoose/typegoose";
 
 @modelOptions({
     schemaOptions:{
-        collection:'clientes',
-        timestamps:false //agregar dos atributos createdAt y updatedAt
-
+        collection:'medicamentos',
+        timestamps:false
     }
 })
 
-export class Client{
-    @prop({required:true,trim:true})
-    public nombre!:string;
-    @prop({required:true,trim:true, unique:true})
-    public email!:string
+export class Medicamento {
+    @prop({required:true, trim:true})
+    public sustancia_activa!: string;
+
+    @prop({required:true, trim:true})
+    public laboratorio!: string;
+
+    @prop({required:true})
+    public requiere_receta!: boolean;
 }
-export const ClienteModel = getModelForClass(Client);
+
+export const MedicamentoModel = getModelForClass(Medicamento);
